@@ -1,0 +1,35 @@
+﻿@model Smart_Medical_Appointment_System.Models.Patient
+
+@{
+    ViewData["Title"] = "Delete Patient";
+}
+
+<div class="d-flex align-items-center gap-2 mb-4">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <h3 class="fw-bold mb-0">Delete Patient</h3>
+</div>
+
+<div class="card shadow-sm p-4" style="max-width: 600px;">
+    <div class="alert alert-danger d-flex align-items-center gap-2">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <span>هل انت متأكد إنك عاوز تحذف المريض ده؟ المواعيد بتاعته هتتحذف تلقائي!</span>
+    </div>
+
+    <div class="mb-3">
+        <p><span class="fw-semibold">الاسم:</span> @Model.Name</p>
+        <p><span class="fw-semibold">الهاتف:</span> @(Model.Phone ?? "غير متاح")</p>
+        <p><span class="fw-semibold">الإيميل:</span> @(Model.Email ?? "غير متاح")</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+        @Html.AntiForgeryToken()
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger px-4">
+                <i class="bi bi-trash"></i> نعم، احذف
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary px-4">إلغاء</a>
+        </div>
+    </form>
+</div>

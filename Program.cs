@@ -2,13 +2,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Smart_Medical_Appointment_System;
 using Smart_Medical_Appointment_System.Models;
+using Smart_Medical_Appointment_System.Reposatories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration
-        .GetConnectionString("DefaultConnection")));
+        .GetConnectionString("cs")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
@@ -25,6 +26,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
+
+builder.Services.AddScoped<IGenericRepo<Doctor>, DoctorRepo>();
+builder.Services.AddScoped<IGenericRepo<Patient>, PatientRepo>();
 
 builder.Services.AddControllersWithViews();
 
