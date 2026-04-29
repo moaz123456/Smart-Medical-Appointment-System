@@ -2,5 +2,7 @@
 {
     public class Appointment
     {
+        public int id { get; set; }
+
     }
 }
