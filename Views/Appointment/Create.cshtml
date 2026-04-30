@@ -1,0 +1,81 @@
+﻿@model Smart_Medical_Appointment_System.Models.Appointment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="d-flex align-items-center gap-2 mb-4">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        ⬅
+    </a>
+    <h3 class="fw-bold mb-0">Create New Appointment</h3>
+</div>
+
+<div class="card shadow-sm p-4" style="max-width: 600px;">
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <!-- Validation Summary -->
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <!-- Doctor -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Doctor</label>
+            <select asp-for="DoctorId" class="form-control"
+                    asp-items="ViewBag.Doctors">
+                <option value="">-- Select Doctor --</option>
+            </select>
+            <span asp-validation-for="DoctorId" class="text-danger small"></span>
+        </div>
+
+        <!-- Patient -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Patient</label>
+            <select asp-for="PatientId" class="form-control"
+                    asp-items="ViewBag.Patients">
+                <option value="">-- Select Patient --</option>
+            </select>
+            <span asp-validation-for="PatientId" class="text-danger small"></span>
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+            <label asp-for="AppointmentDate" class="form-label fw-semibold"></label>
+            <input asp-for="AppointmentDate" type="datetime-local" class="form-control" />
+            <span asp-validation-for="AppointmentDate" class="text-danger small"></span>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Status</label>
+            <select asp-for="Status" class="form-control"
+                    asp-items="ViewBag.Statuses">
+            </select>
+        </div>
+
+        <!-- Notes -->
+        <div class="mb-4">
+            <label asp-for="Notes" class="form-label fw-semibold"></label>
+            <textarea asp-for="Notes" class="form-control"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary px-4">
+                ✔ Save
+            </button>
+
+            <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

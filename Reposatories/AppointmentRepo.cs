@@ -20,8 +20,8 @@ namespace Smart_Medical_Appointment_System.Reposatories
         {
             var app = context.Appointments
                 .AsNoTracking()
-                .Include(d=>d.Id==id)
-                .Include(p=>p.Id==id)
+                .Include(a=>a.Doctor)
+                .Include(a=>a.Patient)
                 .FirstOrDefault(x => x.Id == id);
             return app;
         }

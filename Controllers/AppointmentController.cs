@@ -89,8 +89,8 @@ namespace Smart_Medical_Appointment_System.Controllers
         }
 
         [HttpPost]
-
-        public IActionResult ConfirmDeleted(int id)
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
         {
             var appointment = appointmentRepo.GetById(id);
             if (appointment == null)
@@ -104,9 +104,9 @@ namespace Smart_Medical_Appointment_System.Controllers
         private void LoadDropdowns()
         {
             ViewBag.Doctors = new SelectList(
-                doctorRepo.GetAll(), "Id", "FullName");
+                doctorRepo.GetAll(), "Id", "Name");
             ViewBag.Patients = new SelectList(
-                patientRepo.GetAll(), "Id", "FullName");
+                patientRepo.GetAll(), "Id", "Name");
             ViewBag.Statuses = new SelectList(new[]
             {
                 "Pending", "Confirmed", "Cancelled", "Completed"
