@@ -22,7 +22,7 @@ namespace Smart_Medical_Appointment_System.Models
         [Required(ErrorMessage = "يجب اختيار مريض")]
         public int PatientId { get; set; }
         [ForeignKey("PatientId")]
-        public Patient Patient { get; set; }
+        public Patient? Patient { get; set; }
 
     }
 }

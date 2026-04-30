@@ -29,6 +29,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddScoped<IGenericRepo<Doctor>, DoctorRepo>();
 builder.Services.AddScoped<IGenericRepo<Patient>, PatientRepo>();
+builder.Services.AddScoped<IGenericRepo<Appointment>, AppointmentRepo>();
 
 builder.Services.AddControllersWithViews();
 
