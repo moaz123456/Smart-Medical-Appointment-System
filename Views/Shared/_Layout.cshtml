@@ -96,6 +96,14 @@
                    asp-controller="Appointment" asp-action="Index">
                 <i class="bi bi-calendar-check"></i> Appointments
             </a>
+
+           
+            <form asp-action="Logout" asp-controller="Account" method="post" class="mt-auto p-3">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn w-100 text-start nav-link">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </form>
         </nav>
     </div>
 

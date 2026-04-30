@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Smart_Medical_Appointment_System.Models;
 using Smart_Medical_Appointment_System.Reposatories;
 using System.Net.NetworkInformation;
 
 namespace Smart_Medical_Appointment_System.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
         private readonly IGenericRepo<Patient> patientRepo;
